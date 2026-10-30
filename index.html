@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Meu Sorteador</title>
+  
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#75435b">
+
+<link rel="icon"
+      type="image/png"
+      href="icones/icone-192.png">
+
+<link rel="apple-touch-icon"
+      href="icones/icone-192.png">
+
+
+  <!-- Fontes manuscritas e fonte de leitura -->
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Arquivo de aparência -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Biblioteca de ícones -->
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"
+          defer></script>
+
+  <!-- Arquivo de funcionamento -->
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <div class="aplicativo">
+
+    <!-- CABEÇALHO -->
+    <header class="cabecalho">
+      <div class="ornamento">❦ ✧ ❦</div>
+
+      <h1>Meu Sorteador</h1>
+
+      <p>Um pequeno universo de possibilidades</p>
+    </header>
+
+    <!-- NAVEGAÇÃO -->
+    <nav class="navegacao">
+
+      <button id="aba-criar"
+              class="aba ativa"
+              type="button">
+        <i data-lucide="book-open"></i>
+        Criar e editar
+      </button>
+
+      <button id="aba-sortear"
+              class="aba"
+              type="button">
+        <i data-lucide="sparkles"></i>
+        Sortear
+      </button>
+
+    </nav>
+
+    <!-- ÁREA 1: CRIAÇÃO -->
+    <main id="tela-criar" class="tela">
+
+      <section class="cartao">
+
+        <div class="titulo-secao">
+          <span>✧</span>
+          <h2>Meus Sorteios</h2>
+          <span>✧</span>
+        </div>
+
+        <label for="novo-sorteio">
+          Nome do novo sorteio
+        </label>
+
+        <div class="linha">
+          <input
+            id="novo-sorteio"
+            type="text"
+            placeholder="Ex.: Tesouros"
+            maxlength="100">
+
+          <button id="btn-criar"
+                  class="botao-principal"
+                  type="button">
+            <i data-lucide="plus"></i>
+            Criar
+          </button>
+        </div>
+
+        <div id="lista-sorteios"
+             class="lista-sorteios">
+        </div>
+
+      </section>
+
+      <!-- EDITOR DE ITENS -->
+      <section id="editor" class="cartao escondido">
+
+        <div class="titulo-secao">
+          <span>❦</span>
+          <h2>Editar Sorteio</h2>
+          <span>❦</span>
+        </div>
+
+        <label for="nome-edicao">
+          Nome do sorteio
+        </label>
+
+        <input
+          id="nome-edicao"
+          type="text"
+          maxlength="100">
+
+        <div class="subtitulo">
+          <h3>Itens cadastrados</h3>
+          <span id="contador-itens">0 itens</span>
+        </div>
+
+        <div id="lista-itens"
+             class="lista-itens">
+        </div>
+
+        <label for="novo-item">
+          Adicionar novo item
+        </label>
+
+        <div class="linha">
+          <input
+            id="novo-item"
+            type="text"
+            placeholder="Nome do item"
+            maxlength="200">
+
+          <button id="btn-adicionar-item"
+                  class="botao-principal"
+                  type="button">
+            <i data-lucide="plus"></i>
+            Adicionar
+          </button>
+        </div>
+
+        <button id="btn-excluir-sorteio"
+                class="botao-perigo"
+                type="button">
+          <i data-lucide="trash-2"></i>
+          Excluir este sorteio
+        </button>
+
+      </section>
+
+      <!-- CÓPIA DE SEGURANÇA -->
+      <section class="cartao">
+
+        <div class="titulo-secao">
+          <span>✧</span>
+          <h2>Segurança</h2>
+          <span>✧</span>
+        </div>
+
+        <p class="descricao">
+          Salve uma cópia das suas listas para
+          recuperá-las em outro dispositivo.
+        </p>
+
+        <div class="linha botoes-backup">
+
+          <button id="btn-exportar"
+                  class="botao-secundario"
+                  type="button">
+            <i data-lucide="download"></i>
+            Exportar
+          </button>
+
+          <button id="btn-importar"
+                  class="botao-secundario"
+                  type="button">
+            <i data-lucide="upload"></i>
+            Importar
+          </button>
+
+        </div>
+
+        <input
+          id="arquivo-importacao"
+          type="file"
+          accept=".json,application/json"
+          hidden>
+
+      </section>
+
+    </main>
+
+    <!-- ÁREA 2: SORTEIO -->
+    <main id="tela-sortear" class="tela escondido">
+
+      <!-- CONFIGURAÇÕES -->
+      <section class="cartao">
+
+        <div class="titulo-secao">
+          <span>✧</span>
+          <h2>Preparar Sorteio</h2>
+          <span>✧</span>
+        </div>
+
+        <label for="seletor-sorteio">
+          Escolha seu sorteio
+        </label>
+
+        <select id="seletor-sorteio"></select>
+
+        <label for="quantidade">
+          Quantidade de resultados
+        </label>
+
+        <input
+          id="quantidade"
+          type="number"
+          min="1"
+          max="1000"
+          value="1">
+
+        <label for="tempo">
+          Tempo por resultado (segundos)
+        </label>
+
+        <input
+          id="tempo"
+          type="number"
+          min="1"
+          max="60"
+          value="5">
+
+        <label class="opcao-checkbox">
+          <input id="permitir-repetir"
+                 type="checkbox"
+                 checked>
+          Permitir resultados repetidos
+        </label>
+
+        <p id="tempo-total" class="descricao">
+          Tempo total: 5 segundos
+        </p>
+
+      </section>
+
+      <!-- PAINEL DE SORTEIO -->
+      <section class="painel-sorteio">
+
+        <div class="moldura-interna">
+
+          <div class="ornamento">
+            ❦ ✧ ❦
+          </div>
+
+          <p class="etiqueta">
+            SORTEIO SELECIONADO
+          </p>
+
+          <h2 id="titulo-sorteio">
+            Nenhum sorteio
+          </h2>
+
+          <!-- NOMES PISCANDO -->
+          <div class="area-animacao">
+
+            <i data-lucide="sparkles"
+               class="icone-grande"></i>
+
+            <p id="estado-sorteio">
+              Aguardando sorteio
+            </p>
+
+            <div id="nome-piscando">
+              ✧
+            </div>
+
+          </div>
+
+          <button id="btn-iniciar"
+                  class="botao-principal botao-grande"
+                  type="button">
+            <i data-lucide="play"></i>
+            Iniciar sorteio
+          </button>
+
+          <button id="btn-cancelar"
+                  class="botao-secundario escondido"
+                  type="button">
+            Cancelar sorteio
+          </button>
+
+          <!-- RESULTADOS -->
+          <div class="area-resultados">
+
+            <div class="titulo-secao">
+              <span>❦</span>
+              <h3>Resultados</h3>
+              <span>❦</span>
+            </div>
+
+            <p id="progresso">
+              0 de 0 resultados
+            </p>
+
+            <div id="resultados"
+                 class="resultados">
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <footer>
+      Feito com carinho ✧
+    </footer>
+
+  </div>
+
+</body>
+</html>

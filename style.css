@@ -1,0 +1,491 @@
+
+/* 1. CORES DO APLICATIVO */
+
+:root {
+  --creme: #fff7ef;
+  --rosa: #f0cbd9;
+  --rosa-claro: #f9e5ed;
+  --vinho: #75435b;
+  --rosa-escuro: #b77f98;
+  --borda: #d9acbd;
+  --branco: #fffdfb;
+}
+
+/* 2. CONFIGURAÇÕES GERAIS */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: var(--creme);
+  color: var(--vinho);
+  font-family: "Nunito", sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.aplicativo {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+/* 3. FONTES MANUSCRITAS */
+
+h1,
+h2,
+h3 {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 64px;
+  margin: 10px 0;
+}
+
+h2 {
+  font-size: 39px;
+  margin: 0;
+}
+
+h3 {
+  font-size: 31px;
+  margin: 0;
+}
+
+/* 4. CABEÇALHO */
+
+.cabecalho {
+  text-align: center;
+  padding: 25px 10px;
+}
+
+.cabecalho p {
+  margin: 0;
+  color: var(--rosa-escuro);
+}
+
+.ornamento {
+  font-size: 24px;
+  color: var(--rosa-escuro);
+  text-align: center;
+}
+
+/* 5. NAVEGAÇÃO */
+
+.navegacao {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.aba {
+  flex: 1;
+  padding: 15px;
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  background: var(--branco);
+  color: var(--vinho);
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.aba.ativa {
+  background: var(--rosa);
+  box-shadow: 0 3px 10px #75435b18;
+}
+
+/* 6. CARTÕES COM BORDAS */
+
+.cartao {
+  background: var(--branco);
+  border: 3px double var(--borda);
+  border-radius: 22px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 18px #75435b12;
+}
+
+.titulo-secao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.titulo-secao span {
+  color: var(--rosa-escuro);
+  font-size: 22px;
+}
+
+.subtitulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 0 10px;
+}
+
+.subtitulo span,
+.descricao {
+  color: var(--rosa-escuro);
+  font-size: 14px;
+}
+
+/* 7. CAMPOS DE TEXTO */
+
+label {
+  display: block;
+  font-weight: 700;
+  margin: 14px 0 8px;
+}
+
+input,
+select {
+  width: 100%;
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background: white;
+  color: var(--vinho);
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--vinho);
+  box-shadow: 0 0 0 3px #f0cbd980;
+}
+
+.linha {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* 8. BOTÕES */
+
+.botao-principal,
+.botao-secundario,
+.botao-perigo {
+  border-radius: 13px;
+  padding: 13px 18px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.botao-principal {
+  background: var(--vinho);
+  color: white;
+  border: 1px solid var(--vinho);
+}
+
+.botao-principal:hover:not(:disabled) {
+  background: #925873;
+}
+
+.botao-secundario {
+  background: var(--rosa-claro);
+  color: var(--vinho);
+  border: 1px solid var(--borda);
+}
+
+.botao-perigo {
+  background: #fff1f1;
+  color: #a13e50;
+  border: 1px solid #e6a7b0;
+  margin-top: 22px;
+}
+
+.botao-grande {
+  width: 100%;
+  padding: 16px;
+  font-size: 17px;
+}
+
+.botoes-backup {
+  flex-wrap: wrap;
+}
+
+/* 9. LISTA DE SORTEIOS */
+
+.lista-sorteios,
+.lista-itens {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sorteio-linha,
+.item-linha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background: var(--creme);
+}
+
+.sorteio-linha.selecionado {
+  background: var(--rosa-claro);
+  border-color: var(--rosa-escuro);
+}
+
+.sorteio-escolher {
+  flex: 1;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: var(--vinho);
+  font-weight: 700;
+}
+
+.sorteio-escolher small {
+  display: block;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.item-linha input {
+  flex: 1;
+}
+
+.botao-icone {
+  flex-shrink: 0;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background: white;
+  color: var(--vinho);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 10. PAINEL DE SORTEIO */
+
+.painel-sorteio {
+  background: var(--rosa);
+  padding: 8px;
+  border: 2px solid var(--borda);
+  border-radius: 24px;
+  margin-bottom: 20px;
+}
+
+.moldura-interna {
+  border: 2px solid #fff8fc;
+  border-radius: 18px;
+  padding: 25px;
+  text-align: center;
+}
+
+.etiqueta {
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 800;
+}
+
+#titulo-sorteio {
+  font-size: 52px;
+  overflow-wrap: anywhere;
+}
+
+.area-animacao {
+  min-height: 220px;
+  margin: 20px 0;
+  padding: 25px 10px;
+  border-top: 1px solid var(--borda);
+  border-bottom: 1px solid var(--borda);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icone-grande {
+  width: 32px;
+  height: 32px;
+}
+
+#estado-sorteio {
+  font-size: 14px;
+}
+
+#nome-piscando {
+  font-family: "Great Vibes", cursive;
+  font-size: 58px;
+  line-height: 1.4;
+  min-height: 85px;
+  overflow-wrap: anywhere;
+}
+
+/* 11. EFEITO DE PISCAR */
+
+.piscando {
+  animation: piscar 0.22s infinite alternate;
+}
+
+@keyframes piscar {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0.35;
+    transform: scale(1.04);
+  }
+}
+
+/* 12. RESULTADOS */
+
+.area-resultados {
+  margin-top: 30px;
+  padding: 20px 0;
+}
+
+#progresso {
+  font-size: 13px;
+}
+
+.resultados {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.resultado-item {
+  background: white;
+  border: 1px solid var(--borda);
+  border-radius: 30px;
+  padding: 12px 20px;
+  font-size: 17px;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+
+.resultado-item.pendente {
+  color: #a78a98;
+  border-style: dashed;
+  background: #ffffff80;
+}
+
+.resultado-item.revelado {
+  animation: aparecer 0.4s ease-out;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 13. OUTROS ELEMENTOS */
+
+.opcao-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.opcao-checkbox input {
+  width: 18px;
+  height: 18px;
+}
+
+.escondido {
+  display: none !important;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--rosa-escuro);
+}
+
+/* 14. ADAPTAÇÃO PARA CELULAR */
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+  h2 {
+    font-size: 34px;
+  }
+
+  .cartao {
+    padding: 16px;
+  }
+
+  .moldura-interna {
+    padding: 15px;
+  }
+
+  #titulo-sorteio {
+    font-size: 43px;
+  }
+
+  #nome-piscando {
+    font-size: 46px;
+  }
+
+  .linha {
+    flex-wrap: wrap;
+  }
+
+  .linha > input {
+    flex-basis: 100%;
+  }
+
+  .linha > button {
+    flex: 1;
+  }
+}
+
+/* 15. ACESSIBILIDADE */
+
+@media (prefers-reduced-motion: reduce) {
+  .piscando,
+  .resultado-item.revelado {
+    animation: none;
+  }
+}
